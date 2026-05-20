@@ -28,13 +28,13 @@ namespace BlogApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Post>> CreatePost(Post post)
         {
-            // VERIFICA ROLE
             if (
-                Request.Headers["role"] != "Professor"
+                Request.Headers["role"] != "Professor" &&
+                Request.Headers["role"] != "Admin"
             )
             {
                 return Unauthorized(
-                    "Apenas professores podem criar posts"
+                    "Apenas professores e administradores podem criar posts"
                 );
             }
 
@@ -52,13 +52,13 @@ namespace BlogApi.Controllers
             Post updatedPost
         )
         {
-            // VERIFICA ROLE
             if (
-                Request.Headers["role"] != "Professor"
+                Request.Headers["role"] != "Professor" &&
+                Request.Headers["role"] != "Admin"
             )
             {
                 return Unauthorized(
-                    "Apenas professores podem editar posts"
+                    "Apenas professores e administradores podem editar posts"
                 );
             }
 
@@ -84,13 +84,13 @@ namespace BlogApi.Controllers
             int id
         )
         {
-            // VERIFICA ROLE
             if (
-                Request.Headers["role"] != "Professor"
+                Request.Headers["role"] != "Professor" &&
+                Request.Headers["role"] != "Admin"
             )
             {
                 return Unauthorized(
-                    "Apenas professores podem excluir posts"
+                    "Apenas professores e administradores podem excluir posts"
                 );
             }
 
