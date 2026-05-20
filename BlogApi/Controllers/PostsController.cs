@@ -38,6 +38,8 @@ namespace BlogApi.Controllers
                 );
             }
 
+            post.Author = Request.Headers["author"];
+
             _context.Posts.Add(post);
 
             await _context.SaveChangesAsync();
